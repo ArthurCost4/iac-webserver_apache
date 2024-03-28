@@ -18,18 +18,18 @@ fi
 # Verifica se ja tem o unzip instalado caso não ja o faz
 if dpkg -l | grep -q unzip; then
 	echo 'ja tem o unzip instalado'
+    unzip -v
 
 else
 	echo 'não tem o unzip instalado'
 	apt-get install unzip -y
+    unzip -v
 fi
 
 echo 'Qual o link do repositorio ou site que deseja instalar?'
 read -r link_repo
 
 cd /tmp/ && git clone "$link_repo" main
-
-#unzip main.zip
 
 rm -r /var/www/html/*
 cd /tmp/ && cp -rvf main/* /var/www/html/
